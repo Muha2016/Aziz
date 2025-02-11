@@ -1,0 +1,15 @@
+{% extends 'post/base.html' %}
+
+{% block title %}Threads{% endblock %}
+
+{% block content %}
+<h1>Threads</h1>
+<a href="{% url 'thread_create' %}" class="btn btn-primary">Create New Thread</a>
+<ul class="list-group mt-4">
+    {% for thread in threads %}
+    <li class="list-group-item">
+        <a href="{% url 'thread_detail' thread.id %}">{{ thread.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

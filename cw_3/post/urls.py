@@ -2,9 +2,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Добавление корневого URL
-    path('posts/', views.post_list, name='post_list'),
-    path('posts/<int:id>/', views.post_detail, name='post_detail'),
-    path('posts/create/', views.post_create, name='post_create'),
-    path('posts/<int:id>/delete/', views.post_delete, name='post_delete'),
+    path('', views.thread_list, name='thread_list'),
+    path('threads/<int:pk>/', views.thread_detail, name='thread_detail'),
+    path('threads/new/', views.thread_create, name='thread_create'),
+    path('threads/<int:pk>/edit/', views.thread_edit, name='thread_edit'),
+    path('threads/<int:pk>/delete/', views.thread_delete, name='thread_delete'),
+    path('threads/<int:thread_pk>/post/new/', views.post_new, name='post_new'),
+    path('posts/<int:pk>/edit/', views.post_edit, name='post_edit'),
 ]
