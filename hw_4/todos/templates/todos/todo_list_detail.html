@@ -1,0 +1,65 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+<h1>{{ todo_list.title }}</h1>
+<p>{{ todo_list.description }}</p>
+
+<h2>Todos</h2>
+<ul>
+    {% for todo in todo_list.todo_set.all %}
+    <li>
+        {{ todo.title }} - {{ todo.due_date }} - 
+        {% if todo.status %} 
+            <span class="badge badge-success">Completed</span> 
+        {% else %} 
+            <span class="badge badge-warning">Pending</span> 
+        {% endif %}
+        <a href="{% url 'toggle_todo_status' todo.id %}" class="btn btn-sm btn-secondary">Toggle Status</a>
+        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-sm btn-danger">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createTodoModal">
+  Create Todo
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createTodoModal" tabindex="-1" role="dialog" aria-labelledby="createTodoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createTodoModalLabel">Create Todo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{% url 'todo_list_detail' todo_list.id %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+          </div>
+          <div class="form-group">
+            <label for="due_date">Due Date</label>
+            <input type="date" class="form-control" id="due_date" name="due_date" required>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status">
+              <option value="False">Pending</option>
+              <option value="True">Completed</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

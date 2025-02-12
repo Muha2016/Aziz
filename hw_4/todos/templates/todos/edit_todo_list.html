@@ -1,0 +1,17 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+<h1>Edit Todo List</h1>
+<form method="post" action="{% url 'edit_todo_list' todo_list.id %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{ todo_list.title }}" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description" name="description" value="{{ todo_list.description }}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
