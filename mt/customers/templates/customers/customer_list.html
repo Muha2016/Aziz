@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Список клиентов{% endblock %}
+
+{% block content %}
+    <h1>Список клиентов</h1>
+    <ul class="list-group">
+        {% for customer in customers %}
+            <li class="list-group-item">{{ customer.name }} - {{ customer.phone }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

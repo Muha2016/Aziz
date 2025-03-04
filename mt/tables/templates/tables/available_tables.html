@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Доступные столики{% endblock %}
+
+{% block content %}
+    <h1>Доступные столики</h1>
+    <ul class="list-group">
+        {% for table in tables %}
+            <li class="list-group-item">Столик {{ table.number }} - Мест: {{ table.seats }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
