@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Детали брони{% endblock %}
+
+{% block content %}
+    <h1>Детали брони</h1>
+    <p><strong>Клиент:</strong> {{ reservation.customer.name }}</p>
+    <p><strong>Столик:</strong> {{ reservation.table.number }}</p>
+    <p><strong>Дата:</strong> {{ reservation.date }}</p>
+    <p><strong>Статус:</strong> {{ reservation.status }}</p>
+{% endblock %}

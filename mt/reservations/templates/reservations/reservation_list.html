@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Список броней{% endblock %}
+
+{% block content %}
+    <h1>Список броней</h1>
+    <a href="{% url 'reservations' %}add" class="btn btn-primary mb-3">Добавить бронь</a>
+    <ul class="list-group">
+        {% for reservation in reservations %}
+            <li class="list-group-item">
+                Клиент: {{ reservation.customer.name }} - Столик: {{ reservation.table.number }} - Дата: {{ reservation.date }} - Время: {{ reservation.time }} - Статус: {{ reservation.status }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}                  
